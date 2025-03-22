@@ -1,0 +1,30 @@
+{
+  "name": "dataforte-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm install",
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "uexel",
+  "license": "ISC",
+  "description": "learning nodejs",
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "dataforte-app": "file:",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "validator": "^13.12.0"
+  }
+}
