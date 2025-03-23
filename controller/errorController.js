@@ -10,25 +10,25 @@ function errorHandler(error,req,resp,next){
     //   error.message = msg;
     // }
 
-    if(error.name==='ValidationError'){
+    if(`${error.name}`.match(/^ValidationError$/)){
       const msg =  Object.values(error.errors).map(el=>el.message).join(', ')
       error = new AppError(`Invalid data: ${msg}`,400)
     }
 
-    if(error.name==='MongooseError'){
+    if(`${error.name}`.match(/^MongooseError$/)){
       error = new AppError(error.message,400)
     }
 
-    if(error.name==='CastError'){
+    if(`${error.name}`.match(/^CastError$/)){
       const message = `Invalid ${error.path}: ${error.value}.`
       error = new AppError(message,400)
     }
 
-    if(error.name==='JsonWebTokenError'){
+    if(`${error.name}`.match(/^JsonWebTokenError$/)){
       error = new AppError('The token is invalid. Please login again',401)
     }
 
-    if(error.name === 'TokenExpiredError'){
+    if(`${error.name}`.match (/^TokenExpiredError$/)){
       error = new AppError('The token has expire. Please login again',401)
     }
 

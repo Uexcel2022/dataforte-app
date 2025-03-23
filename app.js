@@ -18,14 +18,15 @@ process.on('uncaughtException',err=>{
 const app = express();
 app.use(express.json({limit: '500kb'}));
 
+app.set('trust proxy',['52.41.36.82','54.191.253.12','44.226.122.3'])
+
 const rateLimiter = rateLimit({
     max: 1000,
     windowMs: 60*60*1000,
     message: 'Too many request from this IP. Please try again in an hour time!'
 })
-
-app.use('/api',rateLimiter)
 app.use(helmet())
+app.use('/api',rateLimiter)
 app.use(mongoSanitize())
 app.use(hpp({
         whitelist : [
