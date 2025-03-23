@@ -24,7 +24,7 @@ const  employeeSchema = new mongoose.Schema({
 })
 
 employeeSchema.pre(/find/, async function(next){
-    this.find().select('-__v');
+    this.find({active: {$ne: false}}).select('-__v');
     next();
 })
 
