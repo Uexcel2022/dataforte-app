@@ -51,7 +51,7 @@ const courseSchema = new mongoose.Schema({
 })
 
 courseSchema.pre(/^find/,function(next){
-    this.find({active: {$ne: false}}).select('-__v')
+    this.find({active: {$ne: false}})
     next();
 })
 

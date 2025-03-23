@@ -47,8 +47,8 @@ const studentSchema = new mongoose.Schema({
 //     next();
 // })
 
-studentSchema.pre(/find/, async function(next){
-    this.find({active: {$ne: false}}).select('-__v');
+studentSchema.pre(/^find/, async function(next){
+    this.find({active: {$ne: false}})
     next();
 })
 

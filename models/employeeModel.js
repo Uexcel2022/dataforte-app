@@ -23,8 +23,8 @@ const  employeeSchema = new mongoose.Schema({
     
 })
 
-employeeSchema.pre(/find/, async function(next){
-    this.find({active: {$ne: false}}).select('-__v');
+employeeSchema.pre(/^find/, async function(next){
+    this.find({active: {$ne: false}})
     next();
 })
 

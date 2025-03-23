@@ -43,7 +43,7 @@ const classSchema = mongoose.Schema({
 })
 
 classSchema.pre(/^find/,function(next){
-    this.find({active: {$ne: false}}).select('-__v')
+    this.find({active: {$ne: false}})
     next();
 })
 
