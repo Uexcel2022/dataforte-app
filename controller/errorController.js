@@ -5,7 +5,7 @@ function errorHandler(error,req,resp,next){
     error.status = error.status||'error'
 
 
-    if(`${error.name}`.startsWith('ValidationError')){
+    if(`${error.name}`.match(/^ValidationError$/)){
       const msg =  Object.values(error.errors).map(el=>el.message).join(', ')
       error = new AppError(`Invalid data: ${msg}`,400)
     }
