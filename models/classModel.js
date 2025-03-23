@@ -6,7 +6,8 @@ const instructorSchema = mongoose.Schema({
     instructor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Employee',
-        require: [true, 'Please provide instruction ID']
+        require: [true, 'Please provide instruction ID'],
+        unique: true
     },
     
     courses: [
