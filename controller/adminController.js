@@ -1,40 +1,12 @@
 import catchAync from '../utils/catch.js'
 import {Admin} from '../models/adminstrators.js'
 import AppError from '../utils/AppError.js'
+import {createOne, findMany, findOne} from './handleFactory.js'
 
-const createAdmin = catchAync(async(req,resp,next)=>{
-   const admin = await Admin.create(req.body)
-   resp.status(201).json({
-      status: 'success',
-      data: {
-         admin
-      }
-   })
-});
-
-const getAllAdins = catchAync(async(req,resp,next)=>{
-   const admins = await Admin.find()
-   resp.status(200).json({
-      status: 'success',
-      results: admins.length,
-      data: {
-         admins
-      }
-   })
- });
-
- const getAdmin = catchAync(async(req,resp,next)=>{
-   const admin = await Admin.findById(req.params.id)
-   if(!admin){
-      return next(new AppError('No admin found with that ID',404))
-   }
-   resp.status(200).json({
-      status: 'success',
-      data: {
-         admin
-      }
-   })
- });
+const createAdmin = createOne(Admin)
+const getAllAdins = findMany(Admin)
+const getAdmin = findOne(Admin)
+ 
 
  const getMe = catchAync(async(req,resp,next)=>{
    const admin = await Admin.findById(req.admin._id).select('-role')

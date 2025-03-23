@@ -67,7 +67,7 @@ adminSchema.methods.correctPassword = async function(candidatePassword,userPassw
 }
 
 adminSchema.pre(/^find/, function(next){
-    this.find({active:{$ne:false}}).select('-__v')
+    this.find({active:{$ne:false}});
     next();
 })
 
