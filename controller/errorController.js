@@ -52,6 +52,7 @@ function errorHandler(error,req,resp,next){
             message: error.message,
         })
     }else{
+        console.log(error)
         resp.status(500).json({
           status : 'error',
           message: 'Some went wrong!'

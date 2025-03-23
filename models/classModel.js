@@ -1,7 +1,7 @@
 import mongoose from './DBConnection.js';
 
 
-const instructorSchema = mongoose.Schema({
+const classSchema = mongoose.Schema({
 
     instructor: {
         type: mongoose.Schema.Types.ObjectId,
@@ -42,11 +42,11 @@ const instructorSchema = mongoose.Schema({
     
 })
 
-instructorSchema.pre(/^find/,function(next){
-    this.find().select('-__v')
+classSchema.pre(/^find/,function(next){
+    this.find({active: {$ne: false}}).select('-__v')
     next();
 })
 
 
-const Class = mongoose.model('Class', instructorSchema);
+const Class = mongoose.model('Class', classSchema);
 export {Class}

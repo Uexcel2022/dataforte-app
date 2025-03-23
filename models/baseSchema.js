@@ -98,6 +98,11 @@ const  baseSchema = new mongoose.Schema({
 }, 
 {discriminatorKey: 'Kind'});
 
+baseSchema.pre('/^find/', function(next){
+    this.find({active: {$ne: false}});
+    next();
+});
+
 const BaseModel = mongoose.model('Dataforte-Documents',baseSchema);
 
 export {BaseModel}
