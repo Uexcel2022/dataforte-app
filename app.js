@@ -8,6 +8,7 @@ import helmet from 'helmet'
 import hpp from 'hpp'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from  'express-rate-limit'
+import AppError from './utils/AppError.js'
 
 process.on('uncaughtException',err=>{
     console.log('UNCAUGHT EXCEPTION! shutting down...')
@@ -39,5 +40,10 @@ app.use('/api/v1/courses',courseRouter);
 app.use('/api/v1/classes',classRouter);
 app.use('/api/v1/employees',employeeRouter);
 
+app.all('/*',(req,resp,next)=>{
+    next(new AppError(`The given URL ${req.originalUrl} not found!`,404));
+})
+
 app.use(globalErrorHandler)
+
 export default app;
