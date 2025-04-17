@@ -1,4 +1,3 @@
-import { Model } from "mongoose"
 import catchAsync from "../utils/catch.js"
 import { ApIFeatures } from "../utils/features.js"
 import AppError from "../utils/AppError.js"
