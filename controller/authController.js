@@ -3,6 +3,7 @@ import catchAsync from "../utils/catch.js";
 import { Admin } from "../models/adminstrators.js";
 import jwt from 'jsonwebtoken'
 import {promisify} from 'util'
+import path from "path";
 
 
 const protect = catchAsync(async(req,res,next)=>{
@@ -67,7 +68,9 @@ const login = catchAsync(async(req,res, next)=>{
 
    const cookieOptions = {
         expires: new Date(Date.now()+process.env.COOKIE_EXPIRES_IN*24*60*60*1000),
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'None',
+        path: '/'
     }
   
     if(process.env.NODE_ENV.match(/^production$/)){
