@@ -53,7 +53,8 @@ const login = catchAsync(async(req,res, next)=>{
    if(!email || !password){
     return next(new AppError('Please provide email and password to login',400))
    }
-   
+   console.log(process.env.NODE_ENV)
+
    const adminUser = await Admin.findOne({email}).select('+password');
 
    if(!adminUser||!await adminUser.correctPassword(password,adminUser.password)){
