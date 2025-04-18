@@ -78,7 +78,7 @@ const login = catchAsync(async(req,res, next)=>{
        cookieOptions.secure = true;
     }
   
-    res.cookie('jwt',token,cookieOptions)
+    res.cookie('token',token,cookieOptions)
 
    res.status(200).json({
     token,
